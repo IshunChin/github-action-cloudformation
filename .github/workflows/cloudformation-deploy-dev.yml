@@ -1,0 +1,27 @@
+name: Cloudformation Deploy
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-1
+
+    - name: Deploy Cloudformation Stack
+      env:
+        STACK_NAME: createvpc-dev
+        TEMPLATE_NAME: template.yml
+      run: |
+        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${TEMPLATE_NAME}
