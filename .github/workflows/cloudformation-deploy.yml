@@ -25,4 +25,4 @@ jobs:
         aws cloudformation deploy \
           --stack-name ${STACK_NAME} \
           --template-file ${TEMPLATE_NAME} \
-          --parameters=production.json
+          --parameter-overrides Environment=production
