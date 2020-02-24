@@ -17,6 +17,7 @@ jobs:
     - name: Deploy Cloudformation Stack
       env:
         STACK_NAME: createvpc
-        TEMPLATE_NAME: cfn-template.yml
+        TEMPLATE_NAME: template.yml
       run: |
-        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${cfn-template.yml}
+        echo "deploy ${TEMPLATE_NAME} use ${TEMPLATE_NAME}"
+        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${TEMPLATE_NAME}
