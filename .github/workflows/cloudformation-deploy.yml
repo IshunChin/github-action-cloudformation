@@ -14,8 +14,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-1
 
+    - name: Setting env
+      STACK_NAME: createvpc
+      TEMPLATE_NAME: cfn-template.yml
+
+
     - name: Deploy Cloudformation Stack
       run: |
-        pws
-        ls
-        aws s3 ls
+        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${cfn-template.yml}
