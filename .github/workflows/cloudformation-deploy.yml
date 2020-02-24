@@ -1,6 +1,6 @@
 name: Cloudformation Deploy
 on: push
-josb:
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
