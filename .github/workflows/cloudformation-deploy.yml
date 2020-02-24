@@ -25,4 +25,5 @@ jobs:
         aws cloudformation deploy \
           --stack-name ${STACK_NAME} \
           --template-file ${TEMPLATE_NAME} \
-          --parameter-overrides Environment=production
+          --parameter-overrides Environment=production \
+          --no-fail-on-empty-changeset
