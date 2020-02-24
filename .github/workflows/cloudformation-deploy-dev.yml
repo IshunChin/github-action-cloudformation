@@ -1,4 +1,4 @@
-name: Cloudformation Deploy
+name: Cloudformation Deploy Development
 on:
   push:
     branches:
@@ -24,4 +24,7 @@ jobs:
         STACK_NAME: createvpc-dev
         TEMPLATE_NAME: template.yml
       run: |
-        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${TEMPLATE_NAME}
+        aws cloudformation deploy \
+          --stack-name ${STACK_NAME} \
+          --template-file ${TEMPLATE_NAME} \
+          --Parameters=development.json

@@ -1,5 +1,8 @@
-name: Cloudformation Deploy
-on: push
+name: Cloudformation Deploy Production
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,8 +19,10 @@ jobs:
 
     - name: Deploy Cloudformation Stack
       env:
-        STACK_NAME: createvpc
+        STACK_NAME: createvpc-prd
         TEMPLATE_NAME: template.yml
       run: |
-        echo "deploy ${TEMPLATE_NAME} use ${TEMPLATE_NAME}"
-        aws cloudformation deploy --stack-name ${STACK_NAME} --template-file ${TEMPLATE_NAME}
+        aws cloudformation deploy \
+          --stack-name ${STACK_NAME} \
+          --template-file ${TEMPLATE_NAME} \
+          --parameters=production.json
